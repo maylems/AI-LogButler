@@ -2,7 +2,7 @@
 
 AI LogButler is a mobile application that transforms the way developers handle log analysis. Instead of spending hours deciphering cryptic error messages, you can now get instant, intelligent analysis powered by Google's Gemini AI. The app speaks your language - literally - with support for English, French, Chinese, and Arabic.
 
-![AI-logButler Screenshot](https://github.com/user-attachments/assets/bcad6c2f-b33a-4d33-99c8-51def77fedd4)
+![Screenshot](https://github.com/user-attachments/assets/664640cc-37a8-4a0e-ab81-5b2773847388)
 
 ## What It Does
 
