@@ -1,0 +1,15 @@
+name: ai_logb
+version: 1.0.0
+
+server:
+  path: .
+
+clients:
+  - path: ../ai_logb_client
+
+modules:
+  - name: model
+    path: src/model
+
+endpoints:
+  - name: LogAnalysisEndpoint

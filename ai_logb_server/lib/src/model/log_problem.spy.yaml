@@ -1,0 +1,26 @@
+# This model represents an analyzed problem detected in logs
+# Run `serverpod generate` after creating or editing this file
+
+class: LogProblem
+
+# Uncomment if you want this stored in the database
+# table: log_problem
+
+fields:
+  ### Short description of the problem
+  problem: String
+
+  ### Most likely technical cause
+  likelyCause: String
+
+  ### Recommended fix or action to resolve the issue
+  recommendedFix: String
+
+  ### Optional code example (can be empty or null)
+  codeExample: String?
+
+  ### Log level (ERROR, WARNING, INFO)
+  severity: String
+
+  ### When the problem was detected
+  timestamp: DateTime
