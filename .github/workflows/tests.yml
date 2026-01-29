@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VERSION: '3.2.3'
-      SERVERPOD_PASSWORD_database: 'f5ZJ_1cYkQnVee0bnnyW_fxFW4_Zmqn-'
-      SERVERPOD_PASSWORD_redis: 'a251qwwAzyHyfAVfS6zdfY1eMYi3sypR'
+      SERVERPOD_PASSWORD_database: ${{ secrets.SERVERPOD_PASSWORD_database }}
+      SERVERPOD_PASSWORD_redis: ${{ secrets.SERVERPOD_PASSWORD_redis }}
 
     steps:
       - uses: actions/checkout@v4
