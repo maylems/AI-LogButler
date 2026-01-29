@@ -23,7 +23,7 @@ jobs:
           dart-version:    '3.10.7'
 
       - name: Start containers
-        working-directory: ai_logb_server
+        working-directory: ai_logb_server 
         run: docker compose up --build -d
 
       - name: Install dependencies
