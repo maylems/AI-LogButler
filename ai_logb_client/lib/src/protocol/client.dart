@@ -233,6 +233,11 @@ class EndpointJwtRefresh extends _i4.EndpointRefreshJwtTokens {
   );
 }
 
+/// Handles log analysis requests using Google's Gemini AI
+///
+/// This endpoint processes raw log text and returns structured analysis
+/// including problem identification, likely causes, and recommended fixes.
+/// The analysis is performed in the user's preferred language when specified.
 /// {@category Endpoint}
 class EndpointLogAnalysis extends _i2.EndpointRef {
   EndpointLogAnalysis(_i2.EndpointCaller caller) : super(caller);
@@ -240,14 +245,33 @@ class EndpointLogAnalysis extends _i2.EndpointRef {
   @override
   String get name => 'logAnalysis';
 
-  /// Endpoint de test
+  /// Simple health check for the endpoint
+  ///
+  /// Returns a confirmation message to verify the endpoint is working
+  /// and can be reached by the client application.
   _i3.Future<String> test() => caller.callServerEndpoint<String>(
     'logAnalysis',
     'test',
     {},
   );
 
-  /// Analyse réelle d'un log via Gemini (PAS de mock)
+  /// Analyzes log content using Gemini AI and returns structured results
+  ///
+  /// This method performs the core log analysis functionality:
+  /// 1. Validates the Gemini API key from server configuration
+  /// 2. Sets up the AI agent with appropriate model configuration
+  /// 3. Determines the response language based on user preference
+  /// 4. Sends the log to Gemini with a structured prompt
+  /// 5. Parses the JSON response and returns a LogProblem object
+  ///
+  /// Parameters:
+  /// - session: Serverpod session containing configuration and logging
+  /// - logContent: The raw log text to be analyzed
+  /// - language: Optional language code (en, fr, zh, ar) for response localization
+  ///
+  /// Returns: LogProblem object with structured analysis results
+  ///
+  /// Throws: Exception if API key is missing or other processing errors occur
   _i3.Future<_i5.LogProblem> analyzeLog(
     String logContent, {
     String? language,

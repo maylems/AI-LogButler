@@ -99,7 +99,6 @@ CRITICAL RULES:
 - NO comments
 - NO text before or after JSON
 - All text fields (problem, likelyCause, recommendedFix) must be in $responseLanguage
-- The logType field MUST be populated with one of the specified values
 
 The JSON MUST be parsable by json.decode() in Dart.
 
@@ -109,12 +108,11 @@ Schema:
   "likelyCause": "string (in $responseLanguage)",
   "recommendedFix": "string (in $responseLanguage)",
   "codeExample": null,
-  "severity": "ERROR | WARNING | INFO",
-  "logType": "string (MUST be one of: 'JavaScript', 'Python', 'Java', 'C#', 'Go', 'Rust', 'SQL', 'Bash', 'Docker', 'Nginx', 'Apache', 'System', 'Application', 'Database', 'Network', 'Other')"
+  "severity": "ERROR | WARNING | INFO"
 }
 
 ANALYSIS INSTRUCTIONS:
-1. FIRST: Identify the log type by examining the content, syntax, error patterns, and context
+1. Examine the log content for error patterns, context, and technical details
 2. Look for specific indicators:
    - JavaScript: console.log, TypeError, ReferenceError, Node.js errors, browser errors
    - Python: Traceback, ImportError, ValueError, Python syntax
@@ -131,8 +129,7 @@ ANALYSIS INSTRUCTIONS:
    - Application: application-specific logs, custom formats
    - Database: database queries, connection errors, transaction logs
    - Network: network protocols, connection issues, packet logs
-3. If no specific type matches, use "Other"
-4. Provide detailed technical analysis in $responseLanguage
+3. Provide detailed technical analysis in $responseLanguage
 
 Analyze this log and produce a comprehensive technical analysis:
 
@@ -147,9 +144,6 @@ $logContent
 
       // Parse the JSON response into a Map
       final Map<String, dynamic> map = json.decode(cleanedJson);
-
-      // Add timestamp if not provided by the AI
-      map['timestamp'] ??= DateTime.now().toIso8601String();
 
       // Convert the Map to our LogProblem object
       return LogProblem.fromJson(map);
@@ -167,7 +161,6 @@ $logContent
         codeExample: null,
         severity: 'ERROR',
         timestamp: DateTime.now(),
-        logType: 'Other', // Default log type for error cases
       );
     }
   }

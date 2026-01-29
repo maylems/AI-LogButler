@@ -20,7 +20,6 @@ abstract class LogProblem implements _i1.SerializableModel {
     this.codeExample,
     required this.severity,
     required this.timestamp,
-    this.logType,
   });
 
   factory LogProblem({
@@ -30,7 +29,6 @@ abstract class LogProblem implements _i1.SerializableModel {
     String? codeExample,
     required String severity,
     required DateTime timestamp,
-    String? logType,
   }) = _LogProblemImpl;
 
   factory LogProblem.fromJson(Map<String, dynamic> jsonSerialization) {
@@ -43,7 +41,6 @@ abstract class LogProblem implements _i1.SerializableModel {
       timestamp: _i1.DateTimeJsonExtension.fromJson(
         jsonSerialization['timestamp'],
       ),
-      logType: jsonSerialization['logType'] as String?,
     );
   }
 
@@ -65,9 +62,6 @@ abstract class LogProblem implements _i1.SerializableModel {
   /// When the problem was detected
   DateTime timestamp;
 
-  /// Type of log (e.g., JavaScript, Python, Docker, Bash, etc.)
-  String? logType;
-
   /// Returns a shallow copy of this [LogProblem]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
@@ -78,7 +72,6 @@ abstract class LogProblem implements _i1.SerializableModel {
     String? codeExample,
     String? severity,
     DateTime? timestamp,
-    String? logType,
   });
   @override
   Map<String, dynamic> toJson() {
@@ -90,7 +83,6 @@ abstract class LogProblem implements _i1.SerializableModel {
       if (codeExample != null) 'codeExample': codeExample,
       'severity': severity,
       'timestamp': timestamp.toJson(),
-      if (logType != null) 'logType': logType,
     };
   }
 
@@ -110,7 +102,6 @@ class _LogProblemImpl extends LogProblem {
     String? codeExample,
     required String severity,
     required DateTime timestamp,
-    String? logType,
   }) : super._(
          problem: problem,
          likelyCause: likelyCause,
@@ -118,7 +109,6 @@ class _LogProblemImpl extends LogProblem {
          codeExample: codeExample,
          severity: severity,
          timestamp: timestamp,
-         logType: logType,
        );
 
   /// Returns a shallow copy of this [LogProblem]
@@ -132,7 +122,6 @@ class _LogProblemImpl extends LogProblem {
     Object? codeExample = _Undefined,
     String? severity,
     DateTime? timestamp,
-    Object? logType = _Undefined,
   }) {
     return LogProblem(
       problem: problem ?? this.problem,
@@ -141,7 +130,6 @@ class _LogProblemImpl extends LogProblem {
       codeExample: codeExample is String? ? codeExample : this.codeExample,
       severity: severity ?? this.severity,
       timestamp: timestamp ?? this.timestamp,
-      logType: logType is String? ? logType : this.logType,
     );
   }
 }
